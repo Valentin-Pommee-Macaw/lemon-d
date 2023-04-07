@@ -1,0 +1,53 @@
+﻿<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"]</title>
+	<link rel="stylesheet" href="~/css/min/Styles/Lemon-d.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="~/js/lemon-d-min.js"></script>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header__wrapper">
+			<span class="header__wrapper__logo">
+				<img class="logo-image" src="~/Lemon-d.png" />
+			</span>
+			<div class="header__wrapper__button-wrapper">
+				<i class="header__wrapper__button-wrapper--button bi bi-list">
+
+				</i>
+				<i class="header__wrapper__button-wrapper--button bi bi-person-fill">
+
+				</i>
+				<i class="header__wrapper__button-wrapper--button button-addGame bi bi-plus-lg" onclick="lemon_d.searchHelper.toggleSearchOverlay()">
+
+				</i>
+			</div>
+		</div>
+	</div>
+
+	<div class="content">
+
+		<div class="content__main">
+
+		@RenderBody()
+
+		</div>
+
+		<div class="search-popup v-none">
+			<form action="/Main/SubmitSearch" method="post">
+				<div class="search-popup__searchbar">
+					<input type="text" name="searchQuery" class="search-popup__searchbar__input" placeholder="Suchen..." />
+					<button type="submit" class="search-popup__searchbar__submit">
+						<i class="bi bi-search"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Projekte\\Private\\Lemon'd\\Lemon-d.local\\Lemon-d.local\\wwwroot\\Lemon-d.png",
+      "PackagePath": "staticwebassets\\Lemon-d.png"
+    },
+    {
+      "Id": "C:\\Projekte\\Private\\Lemon'd\\Lemon-d.local\\Lemon-d.local\\wwwroot\\css\\Styles\\Lemon-d.css",
+      "PackagePath": "staticwebassets\\css\\Styles\\Lemon-d.css"
+    },
+    {
+      "Id": "C:\\Projekte\\Private\\Lemon'd\\Lemon-d.local\\Lemon-d.local\\wwwroot\\css\\min\\Styles\\Lemon-d.css",
+      "PackagePath": "staticwebassets\\css\\min\\Styles\\Lemon-d.css"
+    },
+    {
+      "Id": "C:\\Projekte\\Private\\Lemon'd\\Lemon-d.local\\Lemon-d.local\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Projekte\\Private\\Lemon'd\\Lemon-d.local\\Lemon-d.local\\wwwroot\\js\\lemon-d-min.js",
+      "PackagePath": "staticwebassets\\js\\lemon-d-min.js"
+    },
+    {
+      "Id": "C:\\Projekte\\Private\\Lemon'd\\Lemon-d.local\\Lemon-d.local\\wwwroot\\js\\lemon-d.js",
+      "PackagePath": "staticwebassets\\js\\lemon-d.js"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Internet.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.Internet.props",
+      "PackagePath": "build\\Internet.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.Internet.props",
+      "PackagePath": "buildMultiTargeting\\Internet.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.Internet.props",
+      "PackagePath": "buildTransitive\\Internet.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

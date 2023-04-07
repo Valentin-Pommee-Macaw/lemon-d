@@ -1,0 +1,30 @@
+﻿/* Colors */
+
+$lemonYellow: #ffdf00;
+$lemonLightYellow: #f9ec8f;
+$lemonGreen: #9eb708;
+$lemonLightGreen: #daf172;
+$lemonDarkGreen: #70960c;
+$lemonGrey: #4a4a48;
+$lemonBlack: #000000;
+$lemonWhite: #e2e7d4;
+$lemonWhiteSecondary: #c9c9ac;
+
+$primary: $lemonYellow;
+$secondary: $lemonGreen;
+$dark: $lemonGrey;
+$light: $lemonWhite;
+
+/* Breakpoints */
+
+$breakpointDesktop: 993px;
+
+/* Measurements */
+
+$contentWidthDesktop: $breakpointDesktop - 1;
+
+/* Shadows */
+
+$shadowSlight: 0 1px 1px rgba(0,0,0,0.12);
+$shadowMedium: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12);
+$shadowLarge: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12);
