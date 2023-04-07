@@ -151,6 +151,10 @@
             &__logo {
                 padding: 1.5rem;
 
+                &:hover {
+                    cursor: pointer;
+                }
+
                 .logo-image {
                     height: 100%;
                 }
@@ -177,8 +181,6 @@
         &__main {
             margin: 0 auto;
             width: $contentWidthDesktop;
-            border-left: 1px solid white;
-            border-right: 1px solid white;
         }
     }
 }

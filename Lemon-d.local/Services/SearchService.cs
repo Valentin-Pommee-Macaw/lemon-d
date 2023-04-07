@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using Lemon_d.local.Helpers;
 using Lemon_d.local.IGDB;
 using Lemon_d.local.Models;
@@ -55,6 +56,21 @@ namespace Lemon_d.local.Services
 
 		private string BuildSearchQuery(string q, string name, int limit, int offset, Sort sortBy, SortOrder sortOrder)
 		{
+//			Regex rgx = new Regex(@"[\s\.\,\|\-_\/]");
+//			string[] qSpl = rgx.Split(q);
+//			List<string> qFin = new List<string>();
+//			foreach (string c in qSpl)
+//			{
+//				if (!String.IsNullOrEmpty(c))
+//				{
+//					qFin.Add($"name ~ *\"{c}\"*");
+//				}
+//			}
+//
+//			StringBuilder qBuilder = new StringBuilder();
+//			qBuilder.AppendJoin(" | ", qFin.Distinct());
+//			string qCollection = qBuilder.ToString();
+
 			StringBuilder builder = new StringBuilder();
 
 			StringBuilder gamePartialBuilder = new StringBuilder();

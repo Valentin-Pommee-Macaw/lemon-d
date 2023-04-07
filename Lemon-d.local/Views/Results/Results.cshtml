@@ -2,6 +2,11 @@
 @model Lemon_d.local.Models.SearchResultModel
 
 @{
+    Layout = "Frame";
+    ViewData["Title"] = "Home";
+}
+
+@{
     List<SearchResultModel.PartialQuery.Item> resultItemsGames = new List<SearchResultModel.PartialQuery.Item>(), resultItemsCompanies = new List<SearchResultModel.PartialQuery.Item>();
     foreach (SearchResultModel.PartialQuery.Item i in Model.Results.First(pq => pq.name == "searchQuery_games").result)
     {

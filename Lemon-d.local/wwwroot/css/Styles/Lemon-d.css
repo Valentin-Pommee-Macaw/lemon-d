@@ -143,6 +143,9 @@ body .content .search-popup__searchbar__submit:hover .bi-search {
   .header__wrapper__logo {
     padding: 1.5rem;
   }
+  .header__wrapper__logo:hover {
+    cursor: pointer;
+  }
   .header__wrapper__logo .logo-image {
     height: 100%;
   }
@@ -163,8 +166,6 @@ body .content .search-popup__searchbar__submit:hover .bi-search {
   .content__main {
     margin: 0 auto;
     width: 992px;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
   }
 }
 @media (max-width: 992px) {
@@ -205,6 +206,8 @@ html, body {
 
 body {
   background-color: #4a4a48;
+  display: flex;
+  flex-direction: column;
 }
 
 form {

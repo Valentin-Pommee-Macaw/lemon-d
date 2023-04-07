@@ -38,6 +38,9 @@ body .header__wrapper__button-wrapper--button {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
 }
+body .header__wrapper__button-wrapper--button.button-addGame::before {
+  transform: scale(0.8);
+}
 body .header__wrapper__button-wrapper--button.active {
   background-color: #ffdf00;
   color: #9eb708;
@@ -140,6 +143,9 @@ body .content .search-popup__searchbar__submit:hover .bi-search {
   .header__wrapper__logo {
     padding: 1.5rem;
   }
+  .header__wrapper__logo:hover {
+    cursor: pointer;
+  }
   .header__wrapper__logo .logo-image {
     height: 100%;
   }
@@ -160,8 +166,6 @@ body .content .search-popup__searchbar__submit:hover .bi-search {
   .content__main {
     margin: 0 auto;
     width: 992px;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
   }
 }
 @media (max-width: 992px) {
@@ -202,6 +206,8 @@ html, body {
 
 body {
   background-color: #4a4a48;
+  display: flex;
+  flex-direction: column;
 }
 
 form {
