@@ -1,9 +1,0 @@
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\Internet.exe
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\_config\IGDBSettings.config
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\appsettings.json
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\Internet.dll
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\Internet.deps.json
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\Internet.runtimeconfig.json
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\Internet.pdb
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll

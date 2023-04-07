@@ -1,8 +1,0 @@
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.csproj.AssemblyReference.cache
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.GeneratedMSBuildEditorConfig.editorconfig
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.AssemblyInfoInputs.cache
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.AssemblyInfo.cs
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.csproj.CoreCompileInputs.cache
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.MvcApplicationPartsAssemblyInfo.cache
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.RazorAssemblyInfo.cache
-C:\Projekte\Private\Lemon'd\Lemon-d.local\Lemon-d.local\obj\Debug\net6.0\Lemon-d.local.RazorAssemblyInfo.cs
