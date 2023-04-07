@@ -6,7 +6,7 @@
 		{
 			public struct Configuration
 			{
-				public static readonly string[] SEARCH_LOCATIONS = new string[] { "Game.Name", "Company.Developed.Name", "Company.Published.Name" };
+				public static readonly int DEFAULT_LIMIT = 15;
 			}
 		}
 

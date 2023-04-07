@@ -25,6 +25,10 @@
                     box-shadow: $shadowLarge;
                     border-radius: 5px;
 
+                    &.button-addGame::before {
+                        transform: scale(0.8);
+                    }
+
                     &.active {
                         background-color: $primary;
                         color: $secondary;

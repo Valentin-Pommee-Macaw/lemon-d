@@ -38,6 +38,9 @@ body .header__wrapper__button-wrapper--button {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
 }
+body .header__wrapper__button-wrapper--button.button-addGame::before {
+  transform: scale(0.8);
+}
 body .header__wrapper__button-wrapper--button.active {
   background-color: #ffdf00;
   color: #9eb708;

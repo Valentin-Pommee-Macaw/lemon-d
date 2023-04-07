@@ -3,19 +3,17 @@ using Newtonsoft.Json;
 using Lemon_d.local.Services;
 using Lemon_d.local.Models;
 using Lemon_d.local.IGDB;
+using Newtonsoft.Json.Linq;
 
 namespace Lemon_d.local.Controllers
 {
 	public class ResultsController : Controller
 	{
-		public async Task<IActionResult> Results(string sq)
+		public async Task<IActionResult> Results(string sq, string sort, string order, int limit, int offset)
 		{
 			SearchService searchService = new SearchService();
-			string search = await searchService.Search(sq, 10, 0);
-			return View(new SearchResultModel()
-			{
-				Results = JsonConvert.DeserializeObject<List<object>>(search)
-			});
+			List<SearchResultModel.PartialQuery> search = await searchService.Search(sq, limit <= 0 ? Template.Search.Configuration.DEFAULT_LIMIT : limit, offset, searchService.GetSort(sort), searchService.GetOrder(order));
+			return View(new SearchResultModel(search, sq));
 		}
 	}
 }

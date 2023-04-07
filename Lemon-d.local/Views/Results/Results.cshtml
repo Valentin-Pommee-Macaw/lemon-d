@@ -1,3 +1,25 @@
-﻿@model Lemon_d.local.Models.SearchResultModel
+﻿@using Lemon_d.local.Models;
+@model Lemon_d.local.Models.SearchResultModel
 
-<div>@Model.Results</div>
+@{
+    List<SearchResultModel.PartialQuery.Item> resultItemsGames = new List<SearchResultModel.PartialQuery.Item>(), resultItemsCompanies = new List<SearchResultModel.PartialQuery.Item>();
+    foreach (SearchResultModel.PartialQuery.Item i in Model.Results.First(pq => pq.name == "searchQuery_games").result)
+    {
+        resultItemsGames.Add(i);
+    }
+    foreach (SearchResultModel.PartialQuery.Item i in Model.Results.First(pq => pq.name == "searchQuery_companies").result)
+    {
+        resultItemsCompanies.Add(i);
+    }
+}
+<h1>RESULTS FOR KEYWORD "@Model.query"</h1>
+<h2>GAMES</h2>
+@foreach(var i in resultItemsGames)
+{
+    <div>@i.name</div>
+}
+<h2>COMPANIES</h2>
+@foreach (var i in resultItemsCompanies)
+{
+    <div>@i.name</div>
+}
