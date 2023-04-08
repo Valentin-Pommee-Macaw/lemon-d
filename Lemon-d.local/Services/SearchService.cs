@@ -75,7 +75,7 @@ namespace Lemon_d.local.Services
 
 			StringBuilder gamePartialBuilder = new StringBuilder();
 			gamePartialBuilder.AppendLine($"query games \"{name}_games\" {'{'}");
-			gamePartialBuilder.AppendLine($"fields name, aggregated_rating_count;");
+			gamePartialBuilder.AppendLine($"fields name, websites.url;");
 			gamePartialBuilder.AppendLine($"where name ~ *\"{q}\"*;");
 			gamePartialBuilder.AppendLine($"limit {limit}; offset {offset};");
 			gamePartialBuilder.AppendLine($"sort {GetSorting(sortBy)} {GetOrder(sortOrder)};");
@@ -84,7 +84,7 @@ namespace Lemon_d.local.Services
 
 			StringBuilder companyPartialBuilder = new StringBuilder();
 			companyPartialBuilder.AppendLine($"query companies \"{name}_companies\" {'{'}");
-			companyPartialBuilder.AppendLine($"fields name;");
+			companyPartialBuilder.AppendLine($"fields name, websites.url;");
 			companyPartialBuilder.AppendLine($"where name ~ *\"{q}\"*;");
 			companyPartialBuilder.AppendLine($"limit {limit}; offset {offset};");
 			companyPartialBuilder.AppendLine("};");

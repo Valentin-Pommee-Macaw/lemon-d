@@ -21,10 +21,27 @@
 <h2>GAMES</h2>
 @foreach(var i in resultItemsGames)
 {
-    <div>@i.name</div>
+    if (i.websites != null)
+    {
+        <div>
+            <a href="@i.websites[0].url">@i.name</a>
+        </div>
+    } else
+    {
+        <div>@i.name</div>
+    }
 }
 <h2>COMPANIES</h2>
 @foreach (var i in resultItemsCompanies)
 {
-    <div>@i.name</div>
+    if (i.websites != null)
+    {
+        <div>
+            <a href="@i.websites[0].url">@i.name</a>
+        </div>
+    }
+    else
+    {
+        <div>@i.name</div>
+    }
 }

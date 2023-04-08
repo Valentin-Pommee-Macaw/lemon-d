@@ -30,6 +30,13 @@ namespace Lemon_d.local.Models
 			{
 				public string id { get; set; }
 				public string name { get; set; }
+				public Website[] websites { get; set; }
+
+				public class Website
+				{
+					public string id { get; set; }
+					public string url { get; set; }
+				}
 			}
 		}
 	}
