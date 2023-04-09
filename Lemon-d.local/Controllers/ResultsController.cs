@@ -13,7 +13,8 @@ namespace Lemon_d.local.Controllers
 		{
 			SearchService searchService = new SearchService();
 			List<SearchResultModel.PartialQuery> search = await searchService.Search(sq, limit <= 0 ? Template.Search.Configuration.DEFAULT_LIMIT : limit, offset, searchService.GetSort(sort), searchService.GetOrder(order));
-			return View(new SearchResultModel(search, sq));
+			SearchResultModel m = new SearchResultModel(search, sq);
+			return View(m);
 		}
 	}
 }

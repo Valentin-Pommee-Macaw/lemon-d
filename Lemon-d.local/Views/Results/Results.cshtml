@@ -1,5 +1,5 @@
 ﻿@using Lemon_d.local.Models;
-@model Lemon_d.local.Models.SearchResultModel
+@model Lemon_d.local.Models.SearchResultModel;
 
 @{
     Layout = "Frame";
@@ -7,41 +7,52 @@
 }
 
 @{
-    List<SearchResultModel.PartialQuery.Item> resultItemsGames = new List<SearchResultModel.PartialQuery.Item>(), resultItemsCompanies = new List<SearchResultModel.PartialQuery.Item>();
+    List<SearchResultModel.PartialQuery.Item> resultItemsGames = new List<SearchResultModel.PartialQuery.Item>()/*, resultItemsCompanies = new List<SearchResultModel.PartialQuery.Item>()*/;
     foreach (SearchResultModel.PartialQuery.Item i in Model.Results.First(pq => pq.name == "searchQuery_games").result)
     {
         resultItemsGames.Add(i);
     }
-    foreach (SearchResultModel.PartialQuery.Item i in Model.Results.First(pq => pq.name == "searchQuery_companies").result)
-    {
-        resultItemsCompanies.Add(i);
-    }
+    //foreach (SearchResultModel.PartialQuery.Item i in Model.Results.First(pq => pq.name == "searchQuery_companies").result)
+    //{
+    //    resultItemsCompanies.Add(i);
+    //}
 }
+
+
 <h1>RESULTS FOR KEYWORD "@Model.query"</h1>
-<h2>GAMES</h2>
-@foreach(var i in resultItemsGames)
-{
-    if (i.websites != null)
-    {
-        <div>
-            <a href="@i.websites[0].url">@i.name</a>
-        </div>
-    } else
-    {
-        <div>@i.name</div>
-    }
-}
-<h2>COMPANIES</h2>
-@foreach (var i in resultItemsCompanies)
-{
-    if (i.websites != null)
-    {
-        <div>
-            <a href="@i.websites[0].url">@i.name</a>
-        </div>
-    }
-    else
-    {
-        <div>@i.name</div>
-    }
-}
+<div class="result-list">
+    <div class="result-group">
+        @foreach (var i in resultItemsGames)
+        {
+            <div class="search-result">
+
+                @if (i.cover != null)
+                {
+                    string coverUrl = $"https://images.igdb.com/igdb/image/upload/t_cover_big/{i.cover.image_id}.jpg";
+                    <div class="search-result__thumbnail">
+                        <img src="@coverUrl" />
+                    </div>
+                }
+                else
+                {
+                    <div class="search-result__thumbnail placeholder">
+                        <i class="bi bi-controller"></i>
+                    </div>
+                }
+                <div class="search-result__body">
+                    <p class="title">@i.name</p>
+                    <div class="ratings">
+                        <div class="ratings__global">
+                            <p class="rating--value">@((int)i.total_rating)</p>
+                            <p class="rating--footer">Global Rating</p>
+                        </div>
+                        <div class="ratings__personal">
+                            <p class="rating--value">0</p>
+                            <p class="rating--footer">Local Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

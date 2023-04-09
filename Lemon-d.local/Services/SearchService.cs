@@ -75,20 +75,20 @@ namespace Lemon_d.local.Services
 
 			StringBuilder gamePartialBuilder = new StringBuilder();
 			gamePartialBuilder.AppendLine($"query games \"{name}_games\" {'{'}");
-			gamePartialBuilder.AppendLine($"fields name, websites.url;");
+			gamePartialBuilder.AppendLine($"fields name, total_rating, websites.url, websites.category, cover.image_id;");
 			gamePartialBuilder.AppendLine($"where name ~ *\"{q}\"*;");
 			gamePartialBuilder.AppendLine($"limit {limit}; offset {offset};");
 			gamePartialBuilder.AppendLine($"sort {GetSorting(sortBy)} {GetOrder(sortOrder)};");
 			gamePartialBuilder.AppendLine("};");
 			builder.Append(gamePartialBuilder.ToString());
 
-			StringBuilder companyPartialBuilder = new StringBuilder();
-			companyPartialBuilder.AppendLine($"query companies \"{name}_companies\" {'{'}");
-			companyPartialBuilder.AppendLine($"fields name, websites.url;");
-			companyPartialBuilder.AppendLine($"where name ~ *\"{q}\"*;");
-			companyPartialBuilder.AppendLine($"limit {limit}; offset {offset};");
-			companyPartialBuilder.AppendLine("};");
-			builder.Append(companyPartialBuilder.ToString());
+			//StringBuilder companyPartialBuilder = new StringBuilder();
+			//companyPartialBuilder.AppendLine($"query companies \"{name}_companies\" {'{'}");
+			//companyPartialBuilder.AppendLine($"fields name, websites.url;");
+			//companyPartialBuilder.AppendLine($"where name ~ *\"{q}\"*;");
+			//companyPartialBuilder.AppendLine($"limit {limit}; offset {offset};");
+			//companyPartialBuilder.AppendLine("};");
+			//builder.Append(companyPartialBuilder.ToString());
 
 			return builder.ToString();
 		}

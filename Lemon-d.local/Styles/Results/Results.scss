@@ -1,0 +1,99 @@
+﻿body {
+    .result-list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .result-group {
+            display: grid;
+            grid-auto-rows: calc(100px + 1rem);
+            gap: .5rem;
+
+            .search-result {
+                /*border: 1px solid black;*/
+                box-shadow: $shadowLarge;
+                background-color: $lemonWhiteSecondary;
+                height: 100px;
+                padding: .5rem;
+                border-radius: 10px;
+                display: grid;
+                grid-template-columns: 75px 70% 1fr;
+                grid-template-rows: 1fr;
+                grid-column-gap: .5rem;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: $shadowExtraLarge;
+                }
+
+                &__thumbnail {
+                    height: 100%;
+                    width: 75px;
+                    overflow: hidden;
+                    aspect-ratio: auto;
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        height: 100%;
+                        border-radius: inherit;
+                    }
+                }
+
+                .placeholder {
+                    background-color: $lemonGrey;
+
+                    i {
+                        color: $lemonDarkGreen;
+                        font-size: 2.2rem;
+                    }
+                }
+
+                &__body {
+                    display: grid;
+                    grid-template-rows: 1.5rem 1fr;
+                    grid-template-columns: 1fr;
+
+                    .title {
+                        font-weight: 700;
+                        font-size: 20px;
+                    }
+
+                    .ratings {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: flex-end;
+
+                        &__global {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            padding-right: .5rem;
+                        }
+
+                        &__personal {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        }
+
+                        .rating--value {
+                            font-size: 40px;
+                            font-weight: 700;
+                            vertical-align: baseline;
+                            line-height: 40px;
+                        }
+
+                        .rating--footer {
+                            font-size: 10px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

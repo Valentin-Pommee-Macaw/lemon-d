@@ -29,13 +29,22 @@ namespace Lemon_d.local.Models
 			public class Item
 			{
 				public string id { get; set; }
-				public string name { get; set; }
+                public double total_rating { get; set; }
+                public string name { get; set; }
 				public Website[] websites { get; set; }
+				public Cover cover { get; set; }
 
 				public class Website
 				{
 					public string id { get; set; }
 					public string url { get; set; }
+					public string category { get; set; }
+				}
+
+				public class Cover
+				{
+					public string id { get; set; }
+					public string image_id { get; set; }
 				}
 			}
 		}

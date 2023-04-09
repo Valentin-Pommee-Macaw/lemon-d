@@ -3,11 +3,12 @@
 
     .header {
         display: flex;
-        position: sticky;
+        position: fixed;
         justify-content: center;
         flex-direction: row;
         width: 100%;
         background-color: $lemonWhiteSecondary;
+        z-index: 100;
 
         &__wrapper {
             display: flex;
@@ -55,22 +56,14 @@
                 }
             }
         }
-    }
-
-    .content {
-        width: 100%;
-        background-color: $lemonWhite;
-        position: relative;
-        flex-grow: 1;
 
         .search-popup {
             display: flex;
             justify-content: center;
             align-items: center;
             position: absolute;
-            height: 100%;
             width: 100%;
-            top: 0;
+            top: 100%;
             left: 0;
             background-color: rgba(0, 0, 0, 0.5);
             opacity: 1;
@@ -138,49 +131,66 @@
             }
         }
     }
-}
-
-@media (min-width: $breakpointDesktop) {
-    .header {
-        box-shadow: $shadowLarge;
-        height: 100px;
-
-        &__wrapper {
-            width: $contentWidthDesktop;
-
-            &__logo {
-                padding: 1.5rem;
-
-                &:hover {
-                    cursor: pointer;
-                }
-
-                .logo-image {
-                    height: 100%;
-                }
-            }
-
-            &__button-wrapper {
-                display: flex;
-                flex-direction: row-reverse;
-                justify-content: start;
-                height: 100%;
-
-                &--button {
-                    margin: auto .7rem;
-                    font-size: 3rem;
-                }
-            }
-        }
-    }
 
     .content {
         width: 100%;
-        min-height: calc(100vh - 100px);
+        background-color: $lemonWhite;
+        position: relative;
+        flex-grow: 1;
+    }
+}
 
-        &__main {
-            margin: 0 auto;
-            width: $contentWidthDesktop;
+@media (min-width: $breakpointDesktop) {
+    body {
+        .header {
+            box-shadow: $shadowLarge;
+            height: 100px;
+
+            &__wrapper {
+                width: $contentWidthDesktop;
+
+                &__logo {
+                    padding: 1.5rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    .logo-image {
+                        height: 100%;
+                    }
+                }
+
+                &__button-wrapper {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    justify-content: start;
+                    height: 100%;
+
+                    &--button {
+                        margin: auto .7rem;
+                        font-size: 3rem;
+                    }
+                }
+            }
+
+            .search-popup {
+                height: calc(100vh - 100px);
+            }
+        }
+
+        .header-blocker {
+            height: 100px;
+        }
+
+        .content {
+            width: 100%;
+            min-height: calc(100vh - 100px);
+
+            &__main {
+                margin: 0 auto;
+                width: $contentWidthDesktop;
+            }
         }
     }
 }
@@ -212,6 +222,14 @@
                 }
             }
         }
+
+        .search-popup {
+            height: calc(100vh - 60px);
+        }
+    }
+
+    .header-blocker {
+        height: 60px;
     }
 
     .content {
