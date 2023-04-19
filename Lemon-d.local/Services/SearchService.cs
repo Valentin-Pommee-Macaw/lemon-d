@@ -1,10 +1,8 @@
-﻿using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.RegularExpressions;
 using Lemon_d.local.Helpers;
-using Lemon_d.local.IGDB;
 using Lemon_d.local.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -25,12 +23,15 @@ namespace Lemon_d.local.Services
 
 		#region Methods
 
-		public async Task<List<SearchResultModel.PartialQuery>> Search (string query, int limit, int offset, Sort sortBy, SortOrder sortOrder)
+		public async Task<List<SearchResultModel.GamePartialQuery>> Search (string query, int limit, int offset, Sort sortBy, SortOrder sortOrder)
+
 		{
+			// Retrieve temporary access token from Twitch Authentication API
 			AccessHelper _accessHelper = new AccessHelper();
 			string AccessTokenRetriever = await _accessHelper.RetrieveAccessToken(ClientId, ClientSecret);
 			string _AccessToken = string.Empty;
 			try { _AccessToken = ((JObject)JsonConvert.DeserializeObject(AccessTokenRetriever)).SelectToken("access_token").Value<string>(); } catch(Exception ex) { throw new Exception(message: "An Exception was Thrown when trying to parse the request response.", innerException: ex); }
+			// Send query
 			if (_httpClient == null)
 			{
 				_httpClient = new HttpClient();
@@ -51,10 +52,21 @@ namespace Lemon_d.local.Services
 			};
 
 			var response = await _httpClient.SendAsync(httpRequestMessage).Result.Content.ReadAsStringAsync();
-			return JsonConvert.DeserializeObject<List<SearchResultModel.PartialQuery>>(response);
+			// Deserialize JSON response
+			return JsonConvert.DeserializeObject<List<SearchResultModel.GamePartialQuery>>(response);
 		}
 
-		private string BuildSearchQuery(string q, string name, int limit, int offset, Sort sortBy, SortOrder sortOrder)
+        /// <summary>
+        /// Build a search query for the request based on the given parameters
+        /// </summary>
+        /// <param name="q">The string to search for</param>
+        /// <param name="name">The name of the query as an identifier in the multiquery</param>
+        /// <param name="limit">Max amount of results, default <b>15</b></param>
+        /// <param name="offset">Offset of the returned items index, default <b>0</b></param>
+        /// <param name="sortBy">The property to sort the results by</param>
+        /// <param name="sortOrder">The order (<b>Ascending</b>/<b>Descending</b>) to sort the results</param>
+        /// <returns>A valid search query <see cref="string"/> for the request</returns>
+        private string BuildSearchQuery(string q, string name, int limit, int offset, Sort sortBy, SortOrder sortOrder)
 		{
 //			Regex rgx = new Regex(@"[\s\.\,\|\-_\/]");
 //			string[] qSpl = rgx.Split(q);
@@ -75,25 +87,60 @@ namespace Lemon_d.local.Services
 
 			StringBuilder gamePartialBuilder = new StringBuilder();
 			gamePartialBuilder.AppendLine($"query games \"{name}_games\" {'{'}");
-			gamePartialBuilder.AppendLine($"fields name, total_rating, websites.url, websites.category, cover.image_id;");
+			gamePartialBuilder.AppendLine($"fields name, total_rating, websites.url, storyline, websites.category, cover.image_id, involved_companies.company.name, genres.name, platforms.name, multiplayer_modes.offlinecoop, multiplayer_modes.lancoop, multiplayer_modes.onlinecoop;");
 			gamePartialBuilder.AppendLine($"where name ~ *\"{q}\"*;");
 			gamePartialBuilder.AppendLine($"limit {limit}; offset {offset};");
-			gamePartialBuilder.AppendLine($"sort {GetSorting(sortBy)} {GetOrder(sortOrder)};");
+			gamePartialBuilder.AppendLine($"sort {_GetSorting(sortBy)} {_GetOrder(sortOrder)};");
 			gamePartialBuilder.AppendLine("};");
 			builder.Append(gamePartialBuilder.ToString());
-
-			//StringBuilder companyPartialBuilder = new StringBuilder();
-			//companyPartialBuilder.AppendLine($"query companies \"{name}_companies\" {'{'}");
-			//companyPartialBuilder.AppendLine($"fields name, websites.url;");
-			//companyPartialBuilder.AppendLine($"where name ~ *\"{q}\"*;");
-			//companyPartialBuilder.AppendLine($"limit {limit}; offset {offset};");
-			//companyPartialBuilder.AppendLine("};");
-			//builder.Append(companyPartialBuilder.ToString());
 
 			return builder.ToString();
 		}
 
-		private string GetSorting(Sort s)
+		public async Task<List<SearchResultModel.CountPartialQuery>> GetCount (string query)
+		{
+            // Retrieve temporary access token from Twitch Authentication API
+            AccessHelper _accessHelper = new AccessHelper();
+            string AccessTokenRetriever = await _accessHelper.RetrieveAccessToken(ClientId, ClientSecret);
+            string _AccessToken = string.Empty;
+            try { _AccessToken = ((JObject)JsonConvert.DeserializeObject(AccessTokenRetriever)).SelectToken("access_token").Value<string>(); } catch (Exception ex) { throw new Exception(message: "An Exception was Thrown when trying to parse the request response.", innerException: ex); }
+            // Send query
+            if (_httpClient == null)
+            {
+                _httpClient = new HttpClient();
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _AccessToken);
+            }
+            StringBuilder queryString = new StringBuilder();
+            queryString.AppendLine(BuildSearchCountQuery(query, "searchQuery"));
+
+            var httpRequestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://api.igdb.com/v4/multiquery/"),
+                Headers = {
+                    { HttpRequestHeader.Authorization.ToString(), "Bearer " + _AccessToken },
+                    { "Client-ID", ClientId }
+                },
+                Content = new StringContent(queryString.ToString())
+            };
+
+            var response = await _httpClient.SendAsync(httpRequestMessage).Result.Content.ReadAsStringAsync();
+            // Deserialize JSON response
+            return JsonConvert.DeserializeObject<List<SearchResultModel.CountPartialQuery>>(response);
+        }
+
+		private string BuildSearchCountQuery(string q, string name)
+        {
+            StringBuilder countPartialBuilder = new StringBuilder();
+            countPartialBuilder.AppendLine($"query games/count \"{name}_amount\" {'{'}");
+            countPartialBuilder.AppendLine($"search *\"{q}\"*;");
+            countPartialBuilder.AppendLine("};");
+
+			return countPartialBuilder.ToString();
+        }
+
+
+        private string _GetSorting(Sort s)
 		{
 			switch (s)
 			{
@@ -110,7 +157,7 @@ namespace Lemon_d.local.Services
             }
 		}
 
-		private string GetOrder(SortOrder o)
+		private string _GetOrder(SortOrder o)
 		{
 			switch(o)
 			{
@@ -144,7 +191,7 @@ namespace Lemon_d.local.Services
 			Default = 4,
         }
 
-		public Sort GetSort(string s)
+		public Sort DeserializeSort(string s)
 		{
 			if (!String.IsNullOrEmpty(s))
 			{
@@ -189,7 +236,7 @@ namespace Lemon_d.local.Services
 			Default = 2,
 		}
 
-        public SortOrder GetOrder(string so)
+        public SortOrder DeserializeOrder(string so)
         {
             if(!String.IsNullOrEmpty(so))
 			{

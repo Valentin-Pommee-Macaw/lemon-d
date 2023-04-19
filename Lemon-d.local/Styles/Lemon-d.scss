@@ -56,3 +56,8 @@ form {
 .no-scroll {
     overflow: hidden;
 }
+
+.divider {
+    border-bottom: 1px solid $lemonGreen;
+    margin: .5rem 0;
+}
